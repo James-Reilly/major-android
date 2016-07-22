@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/register_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email_hint"
+        android:textColorHint="#fff"
+        android:ems="10"
+        android:id="@+id/email_field"
+        android:theme="@style/LoginEditText"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:inputType="textPassword"
+        android:textColorHint="#fff"
+        android:hint="@string/password_hint"
+        android:ems="10"
+        android:id="@+id/password_field"
+        android:theme="@style/LoginEditText"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:inputType="textPassword"
+        android:textColorHint="#fff"
+        android:hint="@string/password_confirm_hint"
+        android:ems="10"
+        android:id="@+id/password_confirm_field"
+        android:theme="@style/LoginEditText"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_button"
+        android:layout_margin="15dp"
+        android:id="@+id/login_button"
+        android:theme="@style/ButtonPrimary"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "9779939770",
+    "firebase_url": "https://major-d2f2d.firebaseio.com",
+    "project_id": "major-d2f2d",
+    "storage_bucket": "major-d2f2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9779939770:android:b8d64072431798fe",
+        "android_client_info": {
+          "package_name": "jreillyfactor.major"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "9779939770-guj5nrrp0ig1gv71i6n135p64vd09e84.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCu_C1fcHUD2hJqr-YeZqZuDDDng7FZaU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

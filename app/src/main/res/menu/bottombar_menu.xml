@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottomBarLeaderboard"
+        android:icon="@drawable/ic_format_list_numbered"
+        android:title="Leaderboard" />
+    <item
+        android:id="@+id/bottomBarYourRound"
+        android:icon="@drawable/ic_golf_course"
+        android:title="Your Round" />
+    <item
+        android:id="@+id/bottomBarChat"
+        android:icon="@drawable/ic_chat"
+        android:title="Chat" />
+
+</menu>

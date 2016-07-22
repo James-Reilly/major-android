@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Major</string>
+    <string name="login_button">Login</string>
+    <string name="signup_button">Register</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="password_confirm_hint">Confirm Password</string>
+    <string name="info_text">Welcome to Major</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+</resources>
