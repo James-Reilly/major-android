@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_timeline"
+            android:tint="@android:color/darker_gray"
+            android:title="Stats" />
+        <item
+            android:id="@+id/rounds"
+            android:icon="@drawable/ic_golf_course_black"
+            android:tint="@android:color/darker_gray"
+            android:title="Rounds" />
+        <item
+            android:icon="@drawable/ic_format_list_numbered_black"
+            android:tint="@android:color/darker_gray"
+            android:title="Tournaments" />
+        <item
+            android:icon="@drawable/ic_group"
+            android:tint="@android:color/darker_gray"
+            android:title="Freinds" />
+    </group>
+</menu>

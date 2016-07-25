@@ -1,14 +1,21 @@
 package jreillyfactor.major;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -30,39 +37,75 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
-
-
-        // Set the drawer toggle as the DrawerListener
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-        //mDrawerList.setOnClickListener(new DrawerItemClickListener());
+        // Init toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mMenuArray));
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this,                  /* host Activity */
-                mDrawerLayout,         /* DrawerLayout object */
-                toolbar,  /* nav drawer icon to replace 'Up' caret */
-                R.string.drawer_open,  /* "open drawer" description */
-                R.string.drawer_close  /* "close drawer" description */
-        ) {
 
-            /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                getActionBar().setTitle("closed");
-            }
 
-            /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                getActionBar().setTitle("open");
+
+        // Init navigation view
+        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        // Add menu item to toolbar
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            VectorDrawableCompat indicator = VectorDrawableCompat.create(getResources(), R.drawable.ic_menu, getTheme());
+            indicator.setTint(ResourcesCompat.getColor(getResources(), R.color.white, getTheme()));
+            supportActionBar.setHomeAsUpIndicator(indicator);
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        // Set navdrawer behavior
+
+
+        if (navView != null) {
+            navView.setNavigationItemSelectedListener(
+                    new NavigationView.OnNavigationItemSelectedListener() {
+                        // This method will trigger on item Click of navigation menu
+                        @Override
+                        public boolean onNavigationItemSelected(MenuItem menuItem) {
+                            // Set item in checked state
+                            menuItem.setChecked(true);
+
+                            // TODO: handle navigation
+                            switch (menuItem.getItemId()) {
+                                case (R.id.rounds) :
+                                    Intent intent = new Intent(this, CreateRoundFragment.class);
+                                    startActivity(intent);
+                            }
+
+                            // Closing drawer on item click
+                            mDrawerLayout.closeDrawers();
+                            return true;
+                        }
+                    }
+            );
+        }
+
+        // Adding Floating Action Button to bottom right of main view
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v, "Hello Snackbar!",
+                        Snackbar.LENGTH_LONG).show();
             }
-        };
+        });
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        //noinspection SimplifiableIfStatement
+        if (id == android.R.id.home) {
+            mDrawerLayout.openDrawer(GravityCompat.START);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void showBottomBar(View view, Bundle savedInstanceState) {
