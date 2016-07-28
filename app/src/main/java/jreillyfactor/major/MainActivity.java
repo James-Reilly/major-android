@@ -17,9 +17,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
@@ -71,8 +72,12 @@ public class MainActivity extends AppCompatActivity {
                             // TODO: handle navigation
                             switch (menuItem.getItemId()) {
                                 case (R.id.rounds) :
-                                    Intent intent = new Intent(this, CreateRoundFragment.class);
-                                    startActivity(intent);
+                                    System.out.println("Going to creat round!");
+                                    goToCreateRound();
+                                    break;
+                                default:
+                                    logout();
+                                    break;
                             }
 
                             // Closing drawer on item click
@@ -84,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Adding Floating Action Button to bottom right of main view
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +98,19 @@ public class MainActivity extends AppCompatActivity {
                         Snackbar.LENGTH_LONG).show();
             }
         });
+    */
+    }
 
+    public void goToCreateRound() {
+        Intent intent = new Intent(this, NewRoundActivity.class);
+        startActivity(intent);
+    }
+
+    public void logout() {
+        System.out.println("Logging out");
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(this, InfoActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -108,40 +126,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showBottomBar(View view, Bundle savedInstanceState) {
-        mBottomBar = BottomBar.attach(this, savedInstanceState);
-        mBottomBar.setItems(R.menu.bottombar_menu);
-        mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
-            @Override
-            public void onMenuTabSelected(@IdRes int menuItemId) {
-                switch(menuItemId) {
-                    case (R.id.bottomBarLeaderboard):
-                        Log.d(TAG, "selectLeaderboard");
-                        break;
-                    case (R.id.bottomBarYourRound):
-                        Log.d(TAG, "selectYourRound");
-                        break;
-                    case (R.id.bottomBarChat):
-                        Log.d(TAG, "selectChat");
-                        break;
-                }
-            }
 
-            @Override
-            public void onMenuTabReSelected(@IdRes int menuItemId) {
-                switch(menuItemId) {
-                    case (R.id.bottomBarLeaderboard):
-                        Log.d(TAG, "selectLeaderboard");
-                        break;
-                    case (R.id.bottomBarYourRound):
-                        Log.d(TAG, "selectYourRound");
-                        break;
-                    case (R.id.bottomBarChat):
-                        Log.d(TAG, "selectChat");
-                        break;
-                }
-            }
-        });
-    }
 
 }

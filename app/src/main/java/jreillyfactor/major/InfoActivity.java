@@ -1,6 +1,7 @@
 package jreillyfactor.major;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import jreillyfactor.major.Models.User;
 
 /**
  * Created by James Reilly on 7/18/2016.
@@ -27,6 +36,7 @@ public class InfoActivity extends AppCompatActivity
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private final String TAG = "Login Activity";
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +51,11 @@ public class InfoActivity extends AppCompatActivity
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    goToMainActivity();
+
+                    //goToMainActivity();
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
+
                 }
             }
         };
@@ -78,6 +90,7 @@ public class InfoActivity extends AppCompatActivity
 
     @Override
     public void presentLogin() {
+        /*
         System.out.println("Should see login");
         LoginFragment newFragment = new LoginFragment();
 
@@ -88,6 +101,8 @@ public class InfoActivity extends AppCompatActivity
         transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
         transaction.commit();
+        */
+        goToMainActivity();
 
     }
 
@@ -116,7 +131,7 @@ public class InfoActivity extends AppCompatActivity
         });
     }
 
-    public void register(String email, String password) {
+    public void register(String email, final String username, String password) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -124,6 +139,23 @@ public class InfoActivity extends AppCompatActivity
 
                 if (!task.isSuccessful()) {
                     Toast.makeText(InfoActivity.this, "Authentication failed.", Toast.LENGTH_SHORT);
+                } else {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(username)
+                            .build();
+
+                    user.updateProfile(profileUpdates)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "User profile updated.");
+                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                        writeNewUser(user.getUid(), user.getDisplayName(), user.getEmail());
+                                    }
+                                }
+                            });
                 }
             }
         });
@@ -132,6 +164,18 @@ public class InfoActivity extends AppCompatActivity
     private void goToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    private void writeNewUser(String userId, String name, String email) {
+        String key = mDatabase.child("users").push().getKey();
+        User user = new User(userId, name, email);
+
+
+        Map<String, Object> postValues = user.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/users/" + key, postValues);
+        mDatabase.updateChildren(childUpdates);
     }
 
 }

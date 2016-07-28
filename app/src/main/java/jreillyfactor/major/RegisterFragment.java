@@ -22,7 +22,7 @@ public class RegisterFragment extends Fragment {
     OnRegisterListener mCallback;
 
     public interface OnRegisterListener {
-        public void register(String email, String password);
+        public void register(String email, String username, String password);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,10 +66,12 @@ public class RegisterFragment extends Fragment {
 
                 EditText mEmailField = (EditText) view.findViewById(R.id.email_field);
                 EditText mPasswordField = (EditText) view.findViewById(R.id.password_field);
+                EditText mUsernamefield = (EditText) view.findViewById(R.id.username_field);
                 String email = mEmailField.getText().toString();
                 String password = mPasswordField.getText().toString();
+                String username = mUsernamefield.getText().toString();
                 System.out.println(email + " " + password);
-                mCallback.register(email, password);
+                mCallback.register(email,username, password);
             }
         });
     }
