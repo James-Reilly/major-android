@@ -1,4 +1,4 @@
-package jreillyfactor.major;
+package jreillyfactor.major.Onboarding;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import jreillyfactor.major.R;
 
 
 /**

@@ -3,7 +3,9 @@ package jreillyfactor.major.Models;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -31,5 +33,27 @@ public class User {
         result.put("email", email);
 
         return result;
+    }
+
+    public void setFromHashMap(Iterator pairsIter) {
+
+        while (pairsIter .hasNext()) {
+            Map.Entry pair = (Map.Entry) pairsIter .next();
+            System.out.println(pair.getKey() + " = " + pair.getValue());
+            // Do things with pairs
+            switch ((String) pair.getKey()) {
+                case "uid":
+                    this.uid = (String) pair.getValue();
+                    break;
+                case "email":
+                    this.email = (String) pair.getValue();
+                    break;
+                case "username":
+                    this.username = (String) pair.getValue();
+                    break;
+            }
+            pairsIter .remove(); // avoids a ConcurrentModificationException
+        }
+
     }
 }

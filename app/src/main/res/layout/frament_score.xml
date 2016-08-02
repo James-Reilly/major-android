@@ -3,122 +3,148 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Score"
-        android:gravity="center"
-        android:layout_marginTop="15dp"
-        android:id="@+id/score_label" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:paddingTop="0dp"
-        android:paddingBottom="15dp">
-
+        android:layout_marginTop="30dp">
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_add"
-            android:id="@+id/imageButton2" />
-        <TextView
+            android:layout_marginLeft="30dp"
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:background="@android:color/transparent"
+            android:id="@+id/prev_hole"
+            android:src="@drawable/ic_action_arrow_left"/>
+        <LinearLayout
+            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="3"
+            android:orientation="vertical"
             android:gravity="center"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/Score" />
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/hole_number"
+                android:text="Hole: 1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/par"
+                android:text="Par: 4" />
+        </LinearLayout>
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_add"
-            android:id="@+id/imageButton" />
+            android:layout_marginRight="30dp"
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:background="@android:color/transparent"
+            android:id="@+id/next_hole"
+            android:src="@drawable/ic_action_arrow_right"/>
     </LinearLayout>
-    <View style="@style/Divider" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Putts"
-        android:gravity="center"
-        android:layout_marginTop="15dp"
-        android:id="@+id/putts_label" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:paddingTop="0dp"
-        android:paddingBottom="15dp">
 
+
+
+    <LinearLayout style="@style/ScoreViewLayout">
+
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="Score"/>
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/score_subtract" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/score" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
             android:src="@drawable/ic_action_add"
+            android:id="@+id/score_add" />
+
+    </LinearLayout>
+    <View style="@style/Divider"/>
+    <LinearLayout style="@style/ScoreViewLayout">
+
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="Putts"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
             android:id="@+id/putts_subtract" />
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="2"
-            android:gravity="center"
-            android:layout_gravity="center_vertical"
+            style="@style/ScoreTextView"
+            android:text="3"
             android:id="@+id/putts" />
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
             android:src="@drawable/ic_action_add"
             android:id="@+id/putts_add" />
+
     </LinearLayout>
     <View style="@style/Divider" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Penalties"
-        android:gravity="center"
-        android:layout_marginTop="15dp"
-        android:id="@+id/penalty_label" />
+    <LinearLayout style="@style/ScoreViewLayout">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:paddingTop="0dp"
-        android:paddingBottom="15dp">
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_add"
-            android:id="@+id/penalty_subtract" />
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            style="@style/ParViewLabel"
+            android:text="Penalties"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/penalties_subtract" />
+        <TextView
+            style="@style/ScoreTextView"
             android:text="3"
-            android:gravity="center"
-            android:layout_gravity="center_vertical"
             android:id="@+id/penalties" />
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
             android:src="@drawable/ic_action_add"
-            android:id="@+id/penalty_add" />
+            android:id="@+id/penalties_add" />
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+    <LinearLayout style="@style/ScoreViewLayout">
+
+        <TextView
+            style="@style/FairwayLabel"
+            android:text="Fairway"/>
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_weight="1.75"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton android:id="@+id/fairway_hit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hit"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/fairway_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Left"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/fairway_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Right"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/fairway_miss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Miss"
+                android:onClick="onRadioButtonClicked"/>
+        </RadioGroup>
     </LinearLayout>
 
 

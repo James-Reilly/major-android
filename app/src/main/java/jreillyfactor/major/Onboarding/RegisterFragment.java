@@ -1,7 +1,8 @@
-package jreillyfactor.major;
+package jreillyfactor.major.Onboarding;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -13,28 +14,30 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import jreillyfactor.major.R;
+
 /**
  * Created by James Reilly on 7/18/2016.
  */
-public class LoginFragment extends Fragment {
+public class RegisterFragment extends Fragment {
 
-    OnLoginListener mCallback;
+    OnRegisterListener mCallback;
 
-    public interface OnLoginListener {
-        public void login(String email, String password);
+    public interface OnRegisterListener {
+        public void register(String email, String username, String password);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedIntanceState) {
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_register, container, false);
         // Init button on click listeners
 
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.login_toolbar);
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.register_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar()
-                .setTitle("Login to " + getResources().getString(R.string.app_name));
+                .setTitle("Register to " + getResources().getString(R.string.app_name));
 
         setUpButtons(view);
         return view;
@@ -47,10 +50,10 @@ public class LoginFragment extends Fragment {
         if (context instanceof Activity){
             Activity activity = (Activity) context;
             try {
-                mCallback = (OnLoginListener) activity;
+                mCallback = (OnRegisterListener) activity;
             } catch (ClassCastException e) {
                 throw new ClassCastException(activity.toString() +
-                        " must implement OnLoginListener");
+                        " must implement OnRegisterListener");
             }
         }
 
@@ -62,14 +65,18 @@ public class LoginFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Callback.presentLogin();
+
                 EditText mEmailField = (EditText) view.findViewById(R.id.email_field);
                 EditText mPasswordField = (EditText) view.findViewById(R.id.password_field);
+                EditText mUsernamefield = (EditText) view.findViewById(R.id.username_field);
                 String email = mEmailField.getText().toString();
                 String password = mPasswordField.getText().toString();
+                String username = mUsernamefield.getText().toString();
                 System.out.println(email + " " + password);
-                mCallback.login(email, password);
+                mCallback.register(email,username, password);
             }
         });
     }
+
+
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/login_toolbar"
@@ -10,35 +11,56 @@
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-    <EditText
-        android:id="@+id/course_name"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="Golf Course Name"/>
+        android:layout_height="match_parent">
 
-<!--
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
--->
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Friend"
-        android:id="@+id/add_friend"
-        android:theme="@style/ButtonPrimary"
-        android:layout_gravity="center_horizontal" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Create Round"
-        android:id="@+id/create_round"
-        android:theme="@style/ButtonPrimary"
-        android:layout_gravity="center_horizontal" />
+            <EditText
+                android:id="@+id/course_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Golf Course Name"/>
+
+
+
+            <jreillyfactor.major.ParInputView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/par_view">
+            </jreillyfactor.major.ParInputView>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/my_recycler_view"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Friend"
+                android:id="@+id/add_friend"
+                android:theme="@style/ButtonPrimary"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Round"
+                android:id="@+id/create_round"
+                android:theme="@style/ButtonPrimary"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>

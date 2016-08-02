@@ -1,5 +1,6 @@
 package jreillyfactor.major;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -18,6 +19,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import jreillyfactor.major.Models.User;
@@ -27,14 +31,34 @@ import jreillyfactor.major.Models.User;
  */
 public class InviteFriendDialog extends DialogFragment {
 
-    private DatabaseReference mDatabase;
-    private User[] mFriendList = {};
-    private ArrayList<User> mSelectedFriends = new ArrayList<User>();
+
+    private ArrayList<User> mFriendList = new ArrayList<>();
+    public ArrayList<User> mSelectedFriends = new ArrayList<User>();
+    InviteDialogListener mListener;
+
+    public interface InviteDialogListener {
+        public void onDialogPositiveClick(DialogFragment dialog);
+        public void onDialogNegativeClick(DialogFragment dialog);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        // Verify that the host activity implements the callback interface
+        try {
+            // Instantiate the NoticeDialogListener so we can send events to the host
+            mListener = (InviteDialogListener) activity;
+        } catch (ClassCastException e) {
+            // The activity doesn't implement the interface, throw exception
+            throw new ClassCastException(activity.toString()
+                    + " must implement NoticeDialogListener");
+        }
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        loadFriends();
+
         builder.setTitle("Invite Friends").setMultiChoiceItems(getFriendNames(), null,
                 new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
@@ -42,63 +66,39 @@ public class InviteFriendDialog extends DialogFragment {
                                         boolean isChecked) {
                         if (isChecked) {
                             // If the user checked the item, add it to the selected items
-                            mSelectedFriends.add(mFriendList[which]);
+                            mSelectedFriends.add(mFriendList.get(which));
                         } else if (mSelectedFriends.contains(which)) {
                             // Else, if the item is already in the array, remove it
                             mSelectedFriends.remove(Integer.valueOf(which));
                         }
                     }
                 })
-                // Set the action buttons
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        // User clicked OK, so save the mSelectedItems results somewhere
-                        // or return them to the component that opened the dialog
-
+                        // Send the positive button event back to the host activity
+                        mListener.onDialogPositiveClick(InviteFriendDialog.this);
                     }
                 })
-                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                    @Override
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
+                        // Send the negative button event back to the host activity
+                        mListener.onDialogNegativeClick(InviteFriendDialog.this);
                     }
                 });
 
         return builder.create();
     }
 
-    private void loadFriends() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        final String userId = user.getUid();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        System.out.println(mDatabase.child("users"));
-        mDatabase.child("users").addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // Get user value
-
-                        GenericTypeIndicator<Map<String, User>> t = new GenericTypeIndicator<Map<String, User>>() {};
-                        Map<String, User> users = (Map<String, User>) dataSnapshot.getValue();
-
-                        System.out.println("USERS");
-                        System.out.println(dataSnapshot.getValue());
-                        System.out.println( users.values().toArray()[0].getClass());
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.w("Dialog", "getUser:onCancelled", databaseError.toException());
-                    }
-                });
+    public void setFreinds(ArrayList<User> freinds) {
+        this.mFriendList = freinds;
     }
 
 
     private String[] getFriendNames() {
-        String[] friends = {};
+        String[] friends = new String[mFriendList.size()];
+        for (int i = 0; i < mFriendList.size(); i++) {
+            friends[i] = mFriendList.get(i).username;
+        }
         return friends;
     }
 }

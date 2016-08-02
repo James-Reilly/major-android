@@ -1,14 +1,12 @@
-package jreillyfactor.major;
+package jreillyfactor.major.Onboarding;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.Window;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,7 +21,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
+import jreillyfactor.major.MainActivity;
 import jreillyfactor.major.Models.User;
+import jreillyfactor.major.R;
 
 /**
  * Created by James Reilly on 7/18/2016.
@@ -51,8 +51,7 @@ public class InfoActivity extends AppCompatActivity
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-
-                    //goToMainActivity();
+                    goToMainActivity();
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
 
@@ -90,7 +89,7 @@ public class InfoActivity extends AppCompatActivity
 
     @Override
     public void presentLogin() {
-        /*
+
         System.out.println("Should see login");
         LoginFragment newFragment = new LoginFragment();
 
@@ -101,8 +100,6 @@ public class InfoActivity extends AppCompatActivity
         transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
         transaction.commit();
-        */
-        goToMainActivity();
 
     }
 
@@ -167,15 +164,8 @@ public class InfoActivity extends AppCompatActivity
     }
 
     private void writeNewUser(String userId, String name, String email) {
-        String key = mDatabase.child("users").push().getKey();
-        User user = new User(userId, name, email);
-
-
-        Map<String, Object> postValues = user.toMap();
-
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/users/" + key, postValues);
-        mDatabase.updateChildren(childUpdates);
+        DatabaseReference ref = mDatabase.child("users").push();
+        ref.setValue(new User(userId, name, email));
     }
 
 }

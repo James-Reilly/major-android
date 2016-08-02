@@ -1,4 +1,4 @@
-package jreillyfactor.major;
+package jreillyfactor.major.Adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,11 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import jreillyfactor.major.Models.User;
+import jreillyfactor.major.R;
+
 /**
  * Created by James Reilly on 7/25/2016.
  */
 public class FriendAdapter extends RecyclerView.Adapter <FriendAdapter.ViewHolder> {
-    private String[] mDataset;
+    private User[] mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -25,7 +28,7 @@ public class FriendAdapter extends RecyclerView.Adapter <FriendAdapter.ViewHolde
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public FriendAdapter(String[] myDataset) {
+    public FriendAdapter(User[] myDataset) {
         mDataset = myDataset;
     }
 
@@ -47,7 +50,7 @@ public class FriendAdapter extends RecyclerView.Adapter <FriendAdapter.ViewHolde
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset[position]);
+        holder.mTextView.setText(mDataset[position].username);
 
     }
 
@@ -55,5 +58,10 @@ public class FriendAdapter extends RecyclerView.Adapter <FriendAdapter.ViewHolde
     @Override
     public int getItemCount() {
         return mDataset.length;
+    }
+
+    public void updateList(User[] data) {
+        mDataset = data;
+        notifyDataSetChanged();
     }
 }

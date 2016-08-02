@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout style="@style/ParViewLayout">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.74"
+            android:paddingLeft="20dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Hole"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Par" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="1"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole1" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole1" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole1" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="2"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole2" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole2" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole2" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="3"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole3" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole3" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole3" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="4"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole4" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole4" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole4" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="5"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole5" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole5" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole5" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="6"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole6" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole6" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole6" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="7"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole7" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole7" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole7" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="8"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole8" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole8" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole8" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="9"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole9" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole9" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole9" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="10"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole10" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole10" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole10" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="11"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole11" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole11" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole11" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="12"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole12" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole12" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole12" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="13"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole13" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole13" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole13" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="14"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole14" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole14" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole14" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="15"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole15" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole15" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole15" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="16"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole16" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole16" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole16" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="17"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole17" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole17" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole17" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/ParViewLayout">
+        <TextView
+            style="@style/ParViewLabel"
+            android:text="18"/>
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_remove"
+            android:id="@+id/subtract_hole18" />
+        <TextView
+            style="@style/ScoreTextView"
+            android:text="3"
+            android:id="@+id/hole18" />
+        <ImageButton
+            android:layout_width="@dimen/score_button_size"
+            android:layout_height="@dimen/score_button_size"
+            android:src="@drawable/ic_action_add"
+            android:id="@+id/add_hole18" />
+    </LinearLayout>
+
+</LinearLayout>

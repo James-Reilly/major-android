@@ -11,10 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
-import jreillyfactor.major.Models.RoundPagerAdapter;
+import jreillyfactor.major.Adapters.RoundPagerAdapter;
+import jreillyfactor.major.Models.Round;
 
 /**
  * Created by James Reilly on 7/27/2016.
@@ -24,23 +30,58 @@ public class CurrentRoundFragment extends Fragment {
     private ViewPager mViewPager;
     private RoundPagerAdapter mRoundPagerAdapter;
     private final String TAG = "CurrentRoundFragment";
+    private String mCourseName = "";
+    private DatabaseReference mDatabase;
+    private DatabaseReference mRoundReference;
+    private String mKey;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "Loading!");
+        mKey = getArguments().getString("roundKey");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        if (mKey != null) {
+            mRoundReference = mDatabase.child("rounds").child(mKey);
+            ValueEventListener roundListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // Get Round object and use the values to update the UI
+                    Round round = dataSnapshot.getValue(Round.class);
+                    if (round != null) {
+                        System.out.println("got round!");
+                        mCourseName = round.courseName;
+                        mRoundPagerAdapter.setRound(round);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Getting Round failed, log a message
+                    Log.w(TAG, "loadRound:onCancelled", databaseError.toException());
+                    // ...
+                }
+            };
+            mRoundReference.addValueEventListener(roundListener);
+        }
+
+
         View view = inflater.inflate(R.layout.fragment_current_round, container, false);
         // Init button on click listeners
-        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("Berkshire Valley - Hole 2");
-        }
-        mRoundPagerAdapter = new RoundPagerAdapter(getActivity(), getChildFragmentManager());
+        mRoundPagerAdapter = new RoundPagerAdapter(getActivity(), getChildFragmentManager(), null);
         mViewPager = (ViewPager) view.findViewById(R.id.pager);
         mViewPager.setAdapter(mRoundPagerAdapter);
-        //mViewPager.setCurrentItem(0);
-        //showBottomBar(view, savedInstanceState);
+        Log.d(TAG, "loadRound:onDataChange" + mCourseName);
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(mCourseName);
+        }
 
-        return view;
+        //mViewPager.setCurrentItem(0);
+        showBottomBar(view, savedInstanceState);
+
+        return mBottomBar;
     }
 
     private void showBottomBar(View view, Bundle savedInstanceState) {
@@ -52,15 +93,21 @@ public class CurrentRoundFragment extends Fragment {
                 switch(menuItemId) {
                     case (R.id.bottomBarLeaderboard):
                         Log.d(TAG, "selectLeaderboard");
-                        mViewPager.setCurrentItem(0);
+                        if (mViewPager != null) {
+                            mViewPager.setCurrentItem(0);
+                        }
                         break;
                     case (R.id.bottomBarYourRound):
                         Log.d(TAG, "selectYourRound");
-                        mViewPager.setCurrentItem(1);
+                        if (mViewPager != null) {
+                            mViewPager.setCurrentItem(1);
+                        }
                         break;
                     case (R.id.bottomBarChat):
                         Log.d(TAG, "selectChat");
-                        mViewPager.setCurrentItem(2);
+                        if (mViewPager != null) {
+                            mViewPager.setCurrentItem(2);
+                        }
                         break;
                 }
             }
