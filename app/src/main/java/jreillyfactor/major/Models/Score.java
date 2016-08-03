@@ -22,8 +22,8 @@ public class Score implements Parcelable {
     public Score(Integer number, Integer par) {
         this.number = number;
         this.par = par;
-        this.handicapScore = par;
-        this.rawScore = par;
+        this.handicapScore = 0;
+        this.rawScore = 0;
         this.putts = 2;
         this.penalties = 0;
         this.fairway = "";

@@ -12,10 +12,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jreillyfactor.major.CurrentRoundFragment;
 import jreillyfactor.major.EnterScoreFragment;
 import jreillyfactor.major.FeedFragment;
+import jreillyfactor.major.LeaderboardFragment;
 import jreillyfactor.major.Models.Round;
 import jreillyfactor.major.ScoreEnterPagerFragment;
 
@@ -37,7 +39,17 @@ public class RoundPagerAdapter extends FragmentStatePagerAdapter {
         System.out.println("Getting fragment");
         switch (position) {
             case 0:
-                fragment = new FeedFragment();
+                if (mRound != null) {
+                    System.out.println("Changing to leaderboard");
+                    fragment = new LeaderboardFragment();
+                    Bundle bundle = new Bundle();
+                    List<Round> rounds = new ArrayList<>();
+                    rounds.add(mRound);
+                    bundle.putParcelable("round", mRound);
+                    fragment.setArguments(bundle);
+                } else {
+                    fragment = new FeedFragment();
+                }
                 break;
             case 1:
 

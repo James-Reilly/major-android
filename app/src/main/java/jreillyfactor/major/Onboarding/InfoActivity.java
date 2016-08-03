@@ -164,7 +164,7 @@ public class InfoActivity extends AppCompatActivity
     }
 
     private void writeNewUser(String userId, String name, String email) {
-        DatabaseReference ref = mDatabase.child("users").push();
+        DatabaseReference ref = mDatabase.child("users").child(userId);
         ref.setValue(new User(userId, name, email));
     }
 

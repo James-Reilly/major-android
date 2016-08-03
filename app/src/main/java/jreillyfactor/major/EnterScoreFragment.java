@@ -87,7 +87,7 @@ public class EnterScoreFragment extends Fragment {
         subScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mScore.rawScore != 1) {
+                if (mScore.rawScore > 1) {
                     mScore.rawScore -= 1;
                     setTextFromScore();
                     writeScoreToServer();
@@ -97,7 +97,11 @@ public class EnterScoreFragment extends Fragment {
         addScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mScore.rawScore += 1;
+                if (mScore.rawScore == 0) {
+                    mScore.rawScore = mScore.par;
+                } else {
+                    mScore.rawScore += 1;
+                }
                 setTextFromScore();
                 writeScoreToServer();
             }
